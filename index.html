@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cormorant Cyber — independent mobile & Android security consulting by Casey Chambers, based in Dubai, UAE. Android reverse engineering, malware triage, wireless security analysis, and evidence-preserved investigations.">
+  <meta name="description" content="Cormorant Cyber — independent security consulting by Casey Chambers, based in Dubai, UAE. Android reverse engineering, malware triage, penetration testing & blue teaming, wireless and HID/peripheral security, and evidence-preserved investigations.">
   <meta name="theme-color" content="#070b14">
-  <title>Cormorant Cyber — Mobile &amp; Android Security Consulting</title>
+  <title>Cormorant Cyber — Offensive &amp; Defensive Security Consulting</title>
   <style>
     :root {
       --bg: #070b14;
@@ -235,8 +235,8 @@
     <section class="hero" aria-label="Introduction">
       <div class="wrap">
         <span class="eyebrow">Dubai · United Arab Emirates</span>
-        <h1>Mobile &amp; Android <span class="accent-line">security consulting</span> for teams that ship software.</h1>
-        <p class="lede">Cormorant Cyber is an independent consultancy helping product teams find, understand, and fix security issues in Android and mobile systems — with hands-on reversing, malware triage, and wireless protocol analysis.</p>
+        <h1><span class="accent-line">Security consulting</span> for teams that ship software — mobile, wireless, offensive, and defensive.</h1>
+        <p class="lede">Cormorant Cyber is an independent consultancy helping product teams find, understand, and fix security issues across mobile, wireless, and peripheral attack surfaces — with hands-on reversing, malware triage, penetration testing, and blue-team hardening.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#contact">Start a conversation</a>
           <a class="btn btn-ghost" href="#research">View public research</a>
@@ -244,7 +244,8 @@
         <div class="hero-strip" aria-label="Focus areas">
           <span>Android reverse engineering</span>
           <span>APK &amp; malware analysis</span>
-          <span>Bluetooth / wireless</span>
+          <span>Pentest &amp; blue team</span>
+          <span>Bluetooth / HID / wireless</span>
           <span>Evidence-preserved work</span>
         </div>
       </div>
@@ -303,6 +304,28 @@
               <li>Defensible reporting</li>
             </ul>
           </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">⚔</div>
+            <h3>Penetration Testing &amp; Blue Teaming</h3>
+            <p>Full-lifecycle offensive and defensive engagements across network, wireless, and cloud surfaces.</p>
+            <ul>
+              <li>Recon, vulnerability scanning &amp; exploitation</li>
+              <li>Post-exploitation, pivoting &amp; C2</li>
+              <li>SIEM, monitoring &amp; network hardening</li>
+              <li>AD / cloud / container security review</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">⌨</div>
+            <h3>HID &amp; Peripheral Security</h3>
+            <p>Trust analysis for keyboards and input devices — the attack surface most hosts take for granted.</p>
+            <ul>
+              <li>BLE peripheral identity reconnaissance</li>
+              <li>HID descriptor &amp; report analysis</li>
+              <li>Keystroke-injection &amp; spoofing assessment</li>
+              <li>Verifiable-device design guidance</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -317,7 +340,7 @@
         <div class="about-grid">
           <div>
             <p><strong>Cormorant Cyber</strong> is the solo consultancy of <strong>Casey Chambers</strong>, an Android and mobile security specialist based in Dubai, UAE. Cormorants are coastal birds that dive deep to hunt — the name reflects a working style of going below the surface of an app or device to see what is actually there.</p>
-            <p>The practice is built on real, reproducible technical capability: <strong>Android reverse engineering, APK disassembly, ADB and Shizuku privileged workflows, malware triage, Bluetooth HCI capture and wireless protocol analysis, and evidence-preserved digital investigations</strong> — all documented openly in the public research corpus below.</p>
+            <p>The practice is built on real, reproducible technical capability: <strong>Android reverse engineering, APK disassembly, ADB and Shizuku privileged workflows, malware triage, penetration testing and blue teaming, Bluetooth HCI capture, HID and peripheral security research, and evidence-preserved digital investigations</strong> — all documented openly in the public research corpus below.</p>
             <p>Engagements are direct: one practitioner, no account-manager layer, clear scope, and findings you can act on. Work is available globally, with a base in the UAE timezone.</p>
           </div>
           <aside class="profile" aria-label="Founder profile">
@@ -356,11 +379,35 @@
               <span class="meta">github.com/savagedamage/android-security-wizard ↗</span>
             </div>
           </a>
-          <a class="repo" href="https://github.com/savagedamage/awesome-hid-security" target="_blank" rel="noopener noreferrer">
+          <a class="repo" href="https://github.com/savagedamage/pentest-bluestack-toolkit" target="_blank" rel="noopener noreferrer">
+            <span class="glyph" aria-hidden="true">⚔</span>
+            <div>
+              <h3><code>savagedamage/pentest-bluestack-toolkit</code></h3>
+              <p>Pentest &amp; Blue Team toolkit — a consolidated multi-platform reference (Arch, BlackArch, Kali, Parrotsec, NetHunter) covering recon, exploitation, C2, wireless, and blue-team hardening.</p>
+              <span class="meta">github.com/savagedamage/pentest-bluestack-toolkit ↗</span>
+            </div>
+          </a>
+          <a class="repo" href="https://github.com/savagedamage/hid-security-research" target="_blank" rel="noopener noreferrer">
+            <span class="glyph" aria-hidden="true">⊞</span>
+            <div>
+              <h3><code>savagedamage/hid-security-research</code></h3>
+              <p>Defensive HID security research — a cited knowledge base, threat/vulnerability data, and an observation prototype for making keyboards observable, verifiable, and trustworthy.</p>
+              <span class="meta">github.com/savagedamage/hid-security-research ↗</span>
+            </div>
+          </a>
+          <a class="repo" href="https://github.com/savagedamage/keyboard-recon" target="_blank" rel="noopener noreferrer">
             <span class="glyph" aria-hidden="true">⌁</span>
             <div>
+              <h3><code>savagedamage/keyboard-recon</code></h3>
+              <p>BLE identity scanner for the ESP32-S3 — passive, read-only firmware that records what a wireless keyboard advertises before you ever interact with it.</p>
+              <span class="meta">github.com/savagedamage/keyboard-recon ↗</span>
+            </div>
+          </a>
+          <a class="repo" href="https://github.com/savagedamage/awesome-hid-security" target="_blank" rel="noopener noreferrer">
+            <span class="glyph" aria-hidden="true">⌘</span>
+            <div>
               <h3><code>savagedamage/awesome-hid-security</code></h3>
-              <p>Curated list of HID security tools and research — wireless input peripherals, keystroke injection, and related attack &amp; defense tooling.</p>
+              <p>Curated list of tools, hardware, payloads, research, and defenses for HID security — wireless input peripherals, keystroke injection, and related attack &amp; defense tooling.</p>
               <span class="meta">github.com/savagedamage/awesome-hid-security ↗</span>
             </div>
           </a>
