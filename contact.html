@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Cormorant Cyber — penetration testing, Android app security, data recovery & forensics, OSINT investigations, IoT & firmware security, and mobile privacy hardening. Dubai, UAE.">
+  <meta name="theme-color" content="#070b14">
+  <title>Contact — Cormorant Cyber</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-alt: #0b1120;
+      --panel: #0e1626;
+      --border: #1c2a44;
+      --text: #dbe4f3;
+      --muted: #8fa0bd;
+      --accent: #35e0c8;
+      --accent-dim: #1b9c8a;
+      --warn: #f2b84b;
+      --maxw: 1080px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: rgba(53, 224, 200, .25); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(7, 11, 20, .88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .04em; text-decoration: none; color: var(--text); }
+    .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--accent); border-radius: 7px; font-size: 15px; color: var(--accent); background: rgba(53, 224, 200, .06); }
+    .brand span { font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
+    nav ul { display: flex; gap: 6px; list-style: none; }
+    nav ul a {
+      display: inline-block; padding: 8px 12px; font-size: 14px;
+      color: var(--muted); text-decoration: none; border-radius: 6px; transition: color .15s, background .15s;
+    }
+    nav ul a:hover { color: var(--text); background: rgba(53, 224, 200, .07); }
+    .nav-cta {
+      padding: 8px 16px; border: 1px solid var(--accent); border-radius: 6px;
+      color: var(--accent) !important; font-weight: 600;
+    }
+    .nav-cta:hover { background: rgba(53, 224, 200, .1); }
+    #menu-toggle { display: none; }
+    @media (max-width: 760px) {
+      nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg-alt);
+        border-bottom: 1px solid var(--border); padding: 8px 16px 16px;
+      }
+      nav ul.open { display: flex; }
+      #menu-toggle {
+        display: inline-block; background: none; border: 1px solid var(--border); color: var(--text);
+        font-size: 18px; padding: 4px 12px; border-radius: 6px; cursor: pointer; line-height: 1.4;
+      }
+    }
+
+    main { padding: 72px 0 88px; }
+    .kicker {
+      font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+      font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -.01em; line-height: 1.15; }
+    .lede { margin-top: 16px; color: var(--muted); max-width: 62ch; }
+
+    .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-top: 44px; align-items: start; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 32px;
+    }
+    label { display: block; font-size: 13.5px; font-weight: 600; margin: 18px 0 6px; color: var(--text); }
+    label:first-of-type { margin-top: 0; }
+    input, select, textarea {
+      width: 100%; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); font: inherit; font-size: 15px; padding: 11px 14px; transition: border-color .15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(53, 224, 200, .12);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    .hint { font-size: 12.5px; color: var(--muted); margin-top: 5px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn {
+      display: inline-block; padding: 13px 24px; border-radius: 8px; font-weight: 600; font-size: 15px;
+      border: 1px solid transparent; cursor: pointer; text-decoration: none;
+      transition: transform .1s, box-shadow .15s, background .15s;
+    }
+    .btn-primary { background: var(--accent); color: #04211c; }
+    .btn-primary:hover { background: #52e8d2; box-shadow: 0 6px 26px rgba(53, 224, 200, .28); transform: translateY(-1px); }
+    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: none; }
+    .btn-ghost:hover { border-color: var(--accent-dim); color: var(--accent); }
+    .privacy {
+      margin-top: 18px; font-size: 12.5px; color: var(--muted);
+      border-left: 2px solid var(--warn); padding: 8px 14px; background: rgba(242, 184, 75, .05);
+    }
+    .form-error { color: #ff6b81; font-size: 13px; margin-top: 10px; min-height: 18px; }
+
+    aside .panel h2 { font-size: 18px; margin-bottom: 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-block; font-size: 13px; color: var(--muted); text-decoration: none;
+      border: 1px solid var(--border); border-radius: 999px; padding: 5px 13px; transition: border-color .15s, color .15s;
+    }
+    .chip:hover { border-color: var(--accent-dim); color: var(--accent); }
+    .chip.wa { border-color: rgba(53, 224, 200, .4); color: var(--accent); }
+    .meta { margin-top: 20px; font-size: 13.5px; color: var(--muted); line-height: 1.8; }
+    .meta strong { color: var(--text); }
+    .hours { margin-top: 18px; font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; color: var(--accent-dim); }
+
+    footer { border-top: 1px solid var(--border); padding: 34px 0; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
+    footer p { font-size: 13.5px; color: var(--muted); }
+    footer .mono { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; }
+    footer a { color: var(--accent-dim); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="wrap" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">⛨</span>
+        <span>Cormorant Cyber</span>
+      </a>
+      <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-list">☰</button>
+      <ul id="nav-list">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a class="nav-cta" href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="kicker">Inquiries</p>
+      <h1>Tell us what you're up against</h1>
+      <p class="lede">Scoped engagements with a written quote before any work begins. Pick a track, describe the target or device, and your message goes straight to us over WhatsApp or email — no third-party form service, no tracking.</p>
+
+      <div class="grid">
+        <div class="panel">
+          <form id="inquiry-form" novalidate>
+            <label for="f-name">Name *</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name or company">
+
+            <label for="f-contact">Email or phone (for the reply)</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="email" placeholder="you@example.com or +971 …">
+            <p class="hint">Optional — WhatsApp replies need your phone number.</p>
+
+            <label for="f-service">Service *</label>
+            <select id="f-service" name="service" required>
+              <option value="Cyber security consulting" selected>Cyber security consulting</option>
+              <option value="Android app security / pentesting">Android app security / pentesting</option>
+              <option value="Data recovery & forensics">Data recovery &amp; forensics</option>
+              <option value="OSINT & data investigations">OSINT &amp; data investigations</option>
+              <option value="IoT / firmware security">IoT / firmware security</option>
+              <option value="Malware triage">Malware triage</option>
+              <option value="Mobile privacy / GrapheneOS">Mobile privacy / GrapheneOS</option>
+              <option value="Bug bounty / vulnerability disclosure">Bug bounty / vulnerability disclosure</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <label for="f-message">What's the situation? *</label>
+            <textarea id="f-message" name="message" required placeholder="Device, app, or target in scope — and what you want to know."></textarea>
+
+            <div class="form-error" id="form-error" role="alert"></div>
+
+            <div class="actions">
+              <button type="submit" class="btn btn-primary" id="btn-wa">Send via WhatsApp</button>
+              <button type="button" class="btn btn-ghost" id="btn-mail">Send via Email</button>
+            </div>
+          </form>
+          <p class="privacy">Your message leaves your device only when you press send — it opens in your own WhatsApp or email client. We never route inquiries through third-party services. Sensitive details are better shared after a first contact: don't paste credentials, tokens, or PII of third parties into this form.</p>
+        </div>
+
+        <aside>
+          <div class="panel">
+            <h2>Direct channels</h2>
+            <div class="chips">
+              <a class="chip wa" href="https://wa.me/971505950152" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+              <a class="chip" href="mailto:casey@cormorantcyber.com">casey@cormorantcyber.com</a>
+              <a class="chip" href="index.html#research">Public research</a>
+            </div>
+            <p class="meta">
+              <strong>Base:</strong> Dubai, United Arab Emirates<br>
+              <strong>Response:</strong> within one business day<br>
+              <strong>Engagements:</strong> remote-ready, worldwide
+            </p>
+            <p class="hours">HOURS (GST · UTC+4)<br>Sun–Thu 09:00–18:00<br>Fri–Sat closed</p>
+          </div>
+          <div class="panel">
+            <h2>Jump straight to a track</h2>
+            <div class="chips">
+              <a class="chip" href="https://wa.me/971505950152?text=Hi%20Cormorant%20Cyber%2C%20I%20need%20a%20security%20consultation." target="_blank" rel="noopener noreferrer">Cyber</a>
+              <a class="chip" href="https://wa.me/971505950152?text=Hi%2C%20I%20need%20an%20Android%20app%20security%20review%2Fpentest." target="_blank" rel="noopener noreferrer">Android pentest</a>
+              <a class="chip" href="https://wa.me/971505950152?text=Hi%2C%20I%20need%20data%20recovery%20help." target="_blank" rel="noopener noreferrer">Data recovery</a>
+              <a class="chip" href="https://wa.me/971505950152?text=Hi%2C%20I%20need%20an%20OSINT%2Fdata%20investigation." target="_blank" rel="noopener noreferrer">OSINT</a>
+              <a class="chip" href="https://wa.me/971505950152?text=Hi%2C%20I%20need%20an%20IoT%2Ffirmware%20security%20review." target="_blank" rel="noopener noreferrer">IoT / firmware</a>
+              <a class="chip" href="https://wa.me/971505950152?text=Hi%2C%20I%20want%20to%20discuss%20a%20bug%20bounty%20or%20vulnerability%20disclosure." target="_blank" rel="noopener noreferrer">Bug bounty</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Cormorant Cyber · Casey Chambers · Dubai, UAE</p>
+      <p class="mono">cormorantcyber.com</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('menu-toggle');
+      var list = document.getElementById('nav-list');
+      if (btn && list) {
+        btn.addEventListener('click', function () {
+          var open = list.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          btn.textContent = open ? '✕' : '☰';
+        });
+      }
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      var form = document.getElementById('inquiry-form');
+      var errEl = document.getElementById('form-error');
+
+      function read() {
+        var name = document.getElementById('f-name').value.trim();
+        var contact = document.getElementById('f-contact').value.trim();
+        var service = document.getElementById('f-service').value;
+        var message = document.getElementById('f-message').value.trim();
+        return { name: name, contact: contact, service: service, message: message };
+      }
+
+      function validate(v) {
+        if (!v.name) return 'Please add your name.';
+        if (!v.message) return 'Please describe the situation briefly.';
+        return null;
+      }
+
+      function compose(v) {
+        var lines = ['Cormorant Cyber inquiry', 'Service: ' + v.service, 'From: ' + v.name];
+        if (v.contact) lines.push('Contact: ' + v.contact);
+        lines.push('', v.message);
+        return lines.join('\n');
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = read();
+        var problem = validate(v);
+        if (problem) { errEl.textContent = problem; return; }
+        errEl.textContent = '';
+        var url = 'https://wa.me/971505950152?text=' + encodeURIComponent(compose(v));
+        window.open(url, '_blank', 'noopener');
+      });
+
+      document.getElementById('btn-mail').addEventListener('click', function () {
+        var v = read();
+        var problem = validate(v);
+        if (problem) { errEl.textContent = problem; return; }
+        errEl.textContent = '';
+        var subject = 'Inquiry: ' + v.service + ' — ' + v.name;
+        var url = 'mailto:casey@cormorantcyber.com?subject=' + encodeURIComponent(subject) +
+                  '&body=' + encodeURIComponent(compose(v));
+        window.location.href = url;
+      });
+    })();
+  </script>
+</body>
+</html>
