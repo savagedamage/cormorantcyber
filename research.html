@@ -8,15 +8,15 @@
   <title>The Underground Economy — 2026 · Cormorant Cyber</title>
   <style>
     :root {
-      --bg: #070b14;
-      --bg-alt: #0b1120;
-      --panel: #0e1626;
-      --border: #1c2a44;
-      --text: #dbe4f3;
-      --muted: #8fa0bd;
-      --faint: #5d6b85;
-      --accent: #35e0c8;
-      --hot: #f2b84b;
+      --bg: #06030f;
+      --bg-alt: #0d081a;
+      --panel: #100a20;
+      --border: #241b3f;
+      --text: #f7f8ff;
+      --muted: #a9aec4;
+      --faint: #7a829b;
+      --accent: #00e5ff;
+      --hot: #ff2a6d;
       --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
       --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
     }
@@ -31,7 +31,7 @@
       -webkit-font-smoothing: antialiased;
       text-wrap: pretty;
     }
-    ::selection { background: rgba(53, 224, 200, .25); }
+    ::selection { background: rgba(0, 229, 255, .25); }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
     /* ---------- header / nav (site system) ---------- */
@@ -43,20 +43,20 @@
     }
     nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .04em; text-decoration: none; color: var(--text); }
-    .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--accent); border-radius: 7px; font-size: 15px; color: var(--accent); background: rgba(53, 224, 200, .06); }
+    .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--accent); border-radius: 7px; font-size: 15px; color: var(--accent); background: rgba(0, 229, 255, .06); }
     .brand span { font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
     nav ul { display: flex; gap: 6px; list-style: none; }
     nav ul a {
       display: inline-block; padding: 8px 12px; font-size: 14px;
       color: var(--muted); text-decoration: none; border-radius: 6px; transition: color .15s, background .15s;
     }
-    nav ul a:hover { color: var(--text); background: rgba(53, 224, 200, .07); }
+    nav ul a:hover { color: var(--text); background: rgba(0, 229, 255, .07); }
     nav ul a[aria-current] { color: var(--accent); }
     .nav-cta {
       padding: 8px 16px; border: 1px solid var(--accent); border-radius: 6px;
       color: var(--accent) !important; font-weight: 600;
     }
-    .nav-cta:hover { background: rgba(53, 224, 200, .1); }
+    .nav-cta:hover { background: rgba(0, 229, 255, .1); }
     #menu-toggle { display: none; }
     @media (max-width: 760px) {
       nav ul {
@@ -152,7 +152,7 @@
     .sources { font-size: 13.5px; color: var(--muted); }
     .sources ol { padding-left: 20px; }
     .sources li { margin-bottom: 7px; }
-    .sources a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(53, 224, 200, .35); }
+    .sources a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(0, 229, 255, .35); }
     .sources a:hover { color: var(--text); border-bottom-color: var(--text); }
     .sources .m { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
 
@@ -218,6 +218,24 @@
         <span>figures: public reports, cited per line</span>
         <span>window: 2025 reporting + 2026 to date</span>
         <span>no client data · no invented numbers</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="field" style="padding-top:40px">
+    <div class="wrap">
+      <h2>Field studies</h2>
+      <p class="lede">Device-level measurements from real exams — same collectors run on both sides of a change, deltas reported as observed.</p>
+      <div class="poles rv">
+        <div class="pole pole-cold">
+          <div class="pole-head"><span class="dot"></span>September 2026 · same device, both exams</div>
+          <h3>Same phone, five days apart</h3>
+          <p>Stock Android vs GrapheneOS on one Pixel 8: 84 camera grants vs 0, a remote-support agent vs none, 245 recorded mic events vs a quiet ledger. The full before/after table, and what it means if you carry a phone.</p>
+          <p style="margin-top:16px"><a href="grapheneos.html" style="color:var(--accent);text-decoration:none;font-weight:600">Read the study →</a></p>
+        </div>
+        <div class="pole" style="display:grid;place-items:center;text-align:center">
+          <p style="color:var(--faint);font-family:var(--mono);font-size:13px">more device exams are published here as they're completed</p>
+        </div>
       </div>
     </div>
   </section>
