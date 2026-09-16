@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Underground Economy — 2026. Where the money moves in crypto theft, ransomware, fraud, access brokerage and exploit sales, with every figure cited to a public report. Cormorant Cyber research.">
+  <meta name="theme-color" content="#070b14">
+  <title>The Underground Economy — 2026 · Cormorant Cyber</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-alt: #0b1120;
+      --panel: #0e1626;
+      --border: #1c2a44;
+      --text: #dbe4f3;
+      --muted: #8fa0bd;
+      --faint: #5d6b85;
+      --accent: #35e0c8;
+      --hot: #f2b84b;
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-wrap: pretty;
+    }
+    ::selection { background: rgba(53, 224, 200, .25); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- header / nav (site system) ---------- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(7, 11, 20, .88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .04em; text-decoration: none; color: var(--text); }
+    .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--accent); border-radius: 7px; font-size: 15px; color: var(--accent); background: rgba(53, 224, 200, .06); }
+    .brand span { font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
+    nav ul { display: flex; gap: 6px; list-style: none; }
+    nav ul a {
+      display: inline-block; padding: 8px 12px; font-size: 14px;
+      color: var(--muted); text-decoration: none; border-radius: 6px; transition: color .15s, background .15s;
+    }
+    nav ul a:hover { color: var(--text); background: rgba(53, 224, 200, .07); }
+    nav ul a[aria-current] { color: var(--accent); }
+    .nav-cta {
+      padding: 8px 16px; border: 1px solid var(--accent); border-radius: 6px;
+      color: var(--accent) !important; font-weight: 600;
+    }
+    .nav-cta:hover { background: rgba(53, 224, 200, .1); }
+    #menu-toggle { display: none; }
+    @media (max-width: 760px) {
+      nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg-alt);
+        border-bottom: 1px solid var(--border); padding: 8px 16px 16px;
+      }
+      nav ul.open { display: flex; }
+      #menu-toggle {
+        display: inline-block; background: none; border: 1px solid var(--border); color: var(--text);
+        font-size: 18px; padding: 4px 12px; border-radius: 6px; cursor: pointer; line-height: 1.4;
+      }
+    }
+
+    /* ---------- masthead ---------- */
+    .masthead { padding: 76px 0 40px; border-bottom: 1px solid var(--border); }
+    .kicker {
+      font-family: var(--mono); font-size: 13px; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(36px, 5.6vw, 58px); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; max-width: 20ch; }
+    h1 .hot { color: var(--hot); }
+    .dek { margin-top: 18px; font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 62ch; }
+    .byline {
+      margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 28px;
+      font-family: var(--mono); font-size: 12px; color: var(--faint);
+    }
+
+    /* ---------- sections ---------- */
+    section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+    h2 { font-size: clamp(22px, 3vw, 29px); font-weight: 700; letter-spacing: -.01em; margin-bottom: 10px; }
+    .lede { color: var(--muted); max-width: 68ch; margin-bottom: 28px; }
+
+    .poles { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .pole { background: var(--panel); padding: 26px 24px; }
+    .pole-head { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .pole-hot .dot { background: var(--hot); }
+    .pole-cold .dot { background: var(--accent); }
+    .pole-hot .pole-head { color: var(--hot); }
+    .pole-cold .pole-head { color: var(--accent); }
+    .pole h3 { font-weight: 700; font-size: 19px; margin: 14px 0 8px; }
+    .pole p { color: var(--muted); font-size: 14.5px; }
+    .pole ul { list-style: none; margin-top: 14px; }
+    .pole li {
+      font-size: 14.5px; padding: 7px 0; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
+    }
+    .pole li span.v { font-family: var(--mono); font-size: 13.5px; color: var(--text); white-space: nowrap; }
+    .pole li span.k { color: var(--muted); }
+    .mid {
+      grid-column: 1 / -1; background: var(--bg-alt); padding: 16px 24px;
+      font-size: 14.5px; color: var(--muted); border-top: 1px solid var(--border);
+    }
+    .mid strong { color: var(--hot); font-weight: 600; }
+    .mid em { color: var(--text); font-style: normal; font-family: var(--mono); font-size: 13.5px; }
+
+    /* ---------- ledger ---------- */
+    .ledger { width: 100%; border-collapse: collapse; }
+    .ledger th {
+      text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--faint); font-weight: 500;
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+    }
+    .ledger td { padding: 18px 14px; border-bottom: 1px solid var(--border); vertical-align: baseline; }
+    .ledger tr:last-child td { border-bottom: none; }
+    td.num {
+      font-family: var(--mono); font-size: clamp(19px, 2.4vw, 24px); color: var(--text);
+      white-space: nowrap; letter-spacing: -0.02em; font-weight: 600;
+    }
+    td.num .delta { display: block; font-size: 11.5px; color: var(--muted); letter-spacing: 0; font-weight: 400; }
+    td.num.hot { color: var(--hot); }
+    td.lbl { width: 32%; }
+    td.lbl .t { font-weight: 700; font-size: 16.5px; display: block; }
+    td.lbl .s { font-family: var(--mono); font-size: 11px; color: var(--faint); display: block; margin-top: 4px; }
+    td.meaning { color: var(--muted); font-size: 14.5px; max-width: 380px; }
+    td.meaning strong { color: var(--text); font-weight: 600; }
+
+    /* ---------- demand map ---------- */
+    .demand { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .demand .col { background: var(--panel); border: 1px solid var(--border); padding: 24px; }
+    .demand h3 { font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+    .demand p { font-size: 14.5px; color: var(--muted); margin-bottom: 14px; }
+    .demand ul { list-style: none; }
+    .demand li { font-size: 14.5px; padding: 9px 0; border-top: 1px solid var(--border); }
+    .demand li b { color: var(--text); font-weight: 600; }
+    .note {
+      margin-top: 24px; font-family: var(--mono); font-size: 12px; color: var(--faint);
+      border-left: 2px solid var(--hot); padding: 8px 0 8px 14px;
+    }
+
+    /* ---------- sources ---------- */
+    .sources { font-size: 13.5px; color: var(--muted); }
+    .sources ol { padding-left: 20px; }
+    .sources li { margin-bottom: 7px; }
+    .sources a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(53, 224, 200, .35); }
+    .sources a:hover { color: var(--text); border-bottom-color: var(--text); }
+    .sources .m { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+
+    /* ---------- footer ---------- */
+    footer { padding: 40px 0 56px; }
+    footer p { color: var(--muted); font-size: 14px; }
+    footer .mono { font-family: var(--mono); font-size: 13px; color: var(--faint); margin-top: 4px; }
+    .claim { font-family: var(--mono); font-size: 11.5px; color: var(--faint); margin-top: 14px; max-width: 72ch; }
+
+    /* ---------- reveal ---------- */
+    .rv { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .rv.on { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 720px) {
+      .wrap { padding: 0 18px; }
+      .masthead { padding: 48px 0 30px; }
+      .poles { grid-template-columns: 1fr; }
+      .mid { grid-column: 1; }
+      .demand { grid-template-columns: 1fr; }
+      .ledger { display: block; width: 100%; }
+      .ledger th:nth-child(3) { display: none; }
+      .ledger tr { display: grid; grid-template-columns: minmax(0, 1fr); padding: 12px 0; }
+      .ledger td { border-bottom: none; padding: 4px 10px; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+      td.num { white-space: normal; }
+      td.lbl { width: auto; }
+      td.meaning { max-width: none; padding-top: 2px; border-bottom: 1px solid var(--border); }
+      .ledger tr:last-child td.meaning { border-bottom: none; }
+      thead { display: none; }
+    }
+  </style>
+</head>
+<body id="top">
+
+<header>
+  <nav class="wrap" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">⛨</span>
+      <span>Cormorant Cyber</span>
+    </a>
+    <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-list">☰</button>
+    <ul id="nav-list">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="research.html" aria-current="page">Research</a></li>
+      <li><a href="contact.html">Inquiries</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="masthead">
+    <div class="wrap">
+      <div class="kicker">Market intelligence · September 2026 · Cormorant Cyber</div>
+      <h1>The Underground <span class="hot">Economy</span></h1>
+      <p class="dek">Where the money actually moves in breaches, extortion, fraud and exploit sales — and what the same map looks like from the defending side.</p>
+      <div class="byline">
+        <span>figures: public reports, cited per line</span>
+        <span>window: 2025 reporting + 2026 to date</span>
+        <span>no client data · no invented numbers</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="bifurcation">
+    <div class="wrap">
+      <h2>The market split in two</h2>
+      <p class="lede">Underground economics in 2025–26 stopped being one market. The commodity middle — stolen cards, basic web bugs — collapsed on oversupply and AI automation. The money concentrated at two poles.</p>
+      <div class="poles rv">
+        <div class="pole pole-hot">
+          <div class="pole-head"><span class="dot"></span>Pole one — bespoke capability</div>
+          <h3>Hard-to-replace access, sold quietly</h3>
+          <p>Chains, footholds and extortion leverage that take real skill and can't be mass-produced.</p>
+          <ul>
+            <li><span class="k">Zero-click mobile chain</span><span class="v">$20M</span></li>
+            <li><span class="k">iOS / WhatsApp chains</span><span class="v">$7–8M</span></li>
+            <li><span class="k">Verified corporate access (avg)</span><span class="v">$113K</span></li>
+            <li><span class="k">Median ransom (up 368% YoY)</span><span class="v">$59.5K</span></li>
+          </ul>
+        </div>
+        <div class="pole pole-cold">
+          <div class="pole-head"><span class="dot"></span>Pole two — social engineering at scale</div>
+          <h3>Manipulation, industrialized</h3>
+          <p>No exploit needed. Impersonation, pressure and AI-made realism, run against thousands of targets.</p>
+          <ul>
+            <li><span class="k">Investment fraud (US, 2025)</span><span class="v">$8.65B</span></li>
+            <li><span class="k">Business email compromise</span><span class="v">$3.05B</span></li>
+            <li><span class="k">AI-enabled fraud (deepfakes, voices)</span><span class="v">$893M</span></li>
+            <li><span class="k">Avg BEC incident</span><span class="v">$123K</span></li>
+          </ul>
+        </div>
+        <div class="mid">
+          <strong>Collapsing middle:</strong> a reflected XSS is worth <em>~$68</em>, Internet Bug Bounty criticals were cut <em>76%</em>, and stolen card data keeps getting cheaper. AI tools flood the low end; brokers and big-game operators buy the high end.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ledger">
+    <div class="wrap">
+      <h2>The 2026 ledger</h2>
+      <p class="lede">One line per revenue stream, sourced. Deltas are year-over-year where the report states them.</p>
+      <table class="ledger rv">
+        <thead><tr><th>Number</th><th>Stream</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num hot">$3.4B<span class="delta">2025 crypto theft · Bybit alone $1.4B</span></td>
+            <td class="lbl"><span class="t">Crypto theft</span><span class="s">Chainalysis · Dec 2025</span></td>
+            <td class="meaning"><strong>DPRK took $2.02B of it</strong> — one state's hackers are the single biggest earner in the whole economy, laundering via bridges and mixers.</td>
+          </tr>
+          <tr>
+            <td class="num">$20.9B<span class="delta">US reported losses · +26% YoY · first year over $20B</span></td>
+            <td class="lbl"><span class="t">Reported cybercrime, US</span><span class="s">FBI IC3 · Apr 2026</span></td>
+            <td class="meaning">Complaints crossed <strong>one million</strong> for the first time in IC3's 25 years. Crypto appears in <strong>~55% of all losses</strong>.</td>
+          </tr>
+          <tr>
+            <td class="num">$820M<span class="delta">on-chain ransom payments · −8% YoY</span></td>
+            <td class="lbl"><span class="t">Ransomware</span><span class="s">Chainalysis 2026 report</span></td>
+            <td class="meaning">Fewer victims pay (<strong>28%, record low</strong>) but claimed victims hit 7,874 (+50%) — the most active year on record. Payers pay more: median <strong>+368%</strong>.</td>
+          </tr>
+          <tr>
+            <td class="num hot">$113,275<span class="delta">avg initial-access listing · +4,055% YoY</span></td>
+            <td class="lbl"><span class="t">Access brokerage</span><span class="s">Rapid7 · H2 2025</span></td>
+            <td class="meaning">71% of listings bundle privileges; targets average <strong>$3.24B revenue</strong>. The market went from selling passwords to selling verified footholds.</td>
+          </tr>
+          <tr>
+            <td class="num">$250<span class="delta">/mo infostealer subscription · logs ~$10/bot</span></td>
+            <td class="lbl"><span class="t">Credential economy</span><span class="s">Flashpoint · Rapid7 · Microsoft</span></td>
+            <td class="meaning">1.8B credentials harvested in H1 2025 (+800%). A single corporate VPN session resells for <strong>$500+</strong> — this is the pipeline feeding everything above.</td>
+          </tr>
+          <tr>
+            <td class="num hot">$7–20M<span class="delta">per exploit chain · broker prices</span></td>
+            <td class="lbl"><span class="t">Zero-day brokerage</span><span class="s">Crowdfense · TechCrunch</span></td>
+            <td class="meaning">WhatsApp $8M, iOS $7M, and a UAE-based buyer now advertises <strong>$20M</strong> for zero-click mobile. Broker prices run <strong>5–10× vendor bounties</strong> — silence pays.</td>
+          </tr>
+          <tr>
+            <td class="num">$17.1M<span class="delta">Google VRP paid in 2025 · record, +40%</span></td>
+            <td class="lbl"><span class="t">White-market bounties</span><span class="s">Google · Apple · HackerOne</span></td>
+            <td class="meaning">Top Google payout $250K; Apple's tier now <strong>$2M</strong>; Pixel Titan M2 ceiling $1.5M. The only growing categories: <strong>AI, hardware, exploit chains</strong> — not web bugs.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="demand">
+    <div class="wrap">
+      <h2>The same map, from the defending side</h2>
+      <p class="lede">Every hot segment above creates a matching defensive budget. This is where buyer demand sits right now — mapped from the same public data, not from sales folklore.</p>
+      <div class="demand rv">
+        <div class="col">
+          <h3>Where the budgets are</h3>
+          <ul>
+            <li><b>Crypto-security IR</b> — post-Bybit, exchanges and protocols are the highest-stress buyers on the market.</li>
+            <li><b>Access &amp; stealer defense</b> — phishing-resistant MFA, session hygiene, credential-exposure hunting.</li>
+            <li><b>Deepfake / BEC controls</b> — finance teams losing six figures per incident fund verification processes.</li>
+            <li><b>AI &amp; LLM security</b> — the one bug-bounty category still rising (+540% prompt-injection reports).</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>The entry surface</h3>
+          <p>Defensive work scales from the same skills as the research side: reading software for what actually ships.</p>
+          <ul>
+            <li><b>Application security review</b> — Android, web, API; fixed scope, written findings, evidence per claim.</li>
+            <li><b>Published method</b> — the public research corpus is the credential.</li>
+            <li><b>Before/after proof</b> — same read-only collectors, run twice, delta reported honestly.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">This page is intelligence, not an offer catalogue. Service lines are subject to licence, scope and deliverability gates — see the services section. Figures above are citations of public reports, not client metrics.</p>
+    </div>
+  </section>
+
+  <section id="sources" class="sources">
+    <div class="wrap">
+      <h2>Sources</h2>
+      <ol>
+        <li>Chainalysis — 2026 Crypto Crime Report: crypto theft $3.4B, DPRK $2.02B, ransomware $820M, median $59.5K, pay rate 28%. <span class="m">chainalysis.com/blog</span></li>
+        <li>FBI IC3 — 2025 Annual Report (Apr 2026): $20.9B losses, investment fraud $8.65B, BEC $3.05B, AI-enabled $893M. <span class="m">ic3.gov</span></li>
+        <li>Rapid7 — Initial Access Brokers Report: avg listing $113,275 (+4,055%), 71% privileged, $500–1K commodity tier. <span class="m">rapid7.com</span></li>
+        <li>Flashpoint / Microsoft / Rapid7 — infostealer volumes, Lumma pricing, log prices, corporate VPN cred pricing.</li>
+        <li>TechCrunch (Aug 2025) — Advanced Security Solutions $20M zero-click program; Crowdfense price list (iOS $7M, WhatsApp $8M).</li>
+        <li>Google VRP blog — $17.1M paid in 2025 to 747 researchers; top payout $250K (CVE-2025-4609). Apple (Oct 2025) — $2M top tier. HackerOne — $81M platform total.</li>
+        <li>eCrime.ch / NCC Group — 7,874 claimed ransomware victims, +50% YoY.</li>
+        <li>TRM Labs / Elliptic — DPRK laundering patterns; 2026 to date: Liquid Network ~$319M (85% returned).</li>
+      </ol>
+      <p class="m" style="margin-top:12px">Backed by a weekly monitored feed of these streams — six categories, deduped, silent unless something moves.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year">2026</span> Cormorant Cyber · Casey Chambers · Dubai, UAE</p>
+    <p class="mono">cormorantcyber.com · casey@cormorantcyber.com</p>
+    <p class="claim">Independent security consultancy — Dubai. Every figure on this page traces to a cited public report; no certifications, clients or metrics are claimed beyond what is published.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var list = document.getElementById('nav-list');
+    if (btn && list) {
+      btn.addEventListener('click', function () {
+        var open = list.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+    var els = document.querySelectorAll('.rv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+    setTimeout(function () { els.forEach(function (e) { e.classList.add('on'); }); }, 1400);
+  })();
+</script>
+</body>
+</html>
