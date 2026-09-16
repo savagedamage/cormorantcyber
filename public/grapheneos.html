@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Field study: the same Pixel 8, examined on stock Android and then on GrapheneOS five days later. Every number measured with the same read-only collectors — not assumed. Cormorant Cyber research.">
+  <meta name="theme-color" content="#070b14">
+  <title>Same Phone, Five Days Apart — Stock Android vs GrapheneOS · Cormorant Cyber</title>
+  <style>
+    :root {
+      --bg: #06030f;
+      --bg-alt: #0d081a;
+      --panel: #100a20;
+      --border: #241b3f;
+      --text: #f7f8ff;
+      --muted: #a9aec4;
+      --faint: #7a829b;
+      --accent: #00e5ff;
+      --hot: #ff2a6d;
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-wrap: pretty;
+    }
+    ::selection { background: rgba(0, 229, 255, .25); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- header / nav (site system) ---------- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(7, 11, 20, .88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .04em; text-decoration: none; color: var(--text); }
+    .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--accent); border-radius: 7px; font-size: 15px; color: var(--accent); background: rgba(0, 229, 255, .06); }
+    .brand span { font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
+    nav ul { display: flex; gap: 6px; list-style: none; }
+    nav ul a {
+      display: inline-block; padding: 8px 12px; font-size: 14px;
+      color: var(--muted); text-decoration: none; border-radius: 6px; transition: color .15s, background .15s;
+    }
+    nav ul a:hover { color: var(--text); background: rgba(0, 229, 255, .07); }
+    nav ul a[aria-current] { color: var(--accent); }
+    .nav-cta {
+      padding: 8px 16px; border: 1px solid var(--accent); border-radius: 6px;
+      color: var(--accent) !important; font-weight: 600;
+    }
+    .nav-cta:hover { background: rgba(0, 229, 255, .1); }
+    #menu-toggle { display: none; }
+    @media (max-width: 760px) {
+      nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg-alt);
+        border-bottom: 1px solid var(--border); padding: 8px 16px 16px;
+      }
+      nav ul.open { display: flex; }
+      #menu-toggle {
+        display: inline-block; background: none; border: 1px solid var(--border); color: var(--text);
+        font-size: 18px; padding: 4px 12px; border-radius: 6px; cursor: pointer; line-height: 1.4;
+      }
+    }
+
+    /* ---------- masthead ---------- */
+    .masthead { padding: 76px 0 40px; border-bottom: 1px solid var(--border); }
+    .kicker {
+      font-family: var(--mono); font-size: 13px; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(34px, 5.4vw, 54px); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; max-width: 22ch; }
+    h1 .hot { color: var(--hot); }
+    .dek { margin-top: 18px; font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 62ch; }
+    .byline {
+      margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 28px;
+      font-family: var(--mono); font-size: 12px; color: var(--faint);
+    }
+
+    /* ---------- sections ---------- */
+    section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+    h2 { font-size: clamp(22px, 3vw, 29px); font-weight: 700; letter-spacing: -.01em; margin-bottom: 10px; }
+    .lede { color: var(--muted); max-width: 68ch; margin-bottom: 28px; }
+
+    /* ---------- comparison table ---------- */
+    .compare { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .compare th {
+      text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--faint); font-weight: 500;
+      padding: 12px 12px; border-bottom: 1px solid var(--border);
+    }
+    .compare th:first-child { width: 30%; }
+    .compare th.hot { color: var(--hot); }
+    .compare th.acc { color: var(--accent); }
+    .compare td {
+      padding: 14px 12px; border-bottom: 1px solid var(--border);
+      font-size: 14.5px; vertical-align: baseline;
+    }
+    .compare tr:last-child td { border-bottom: none; }
+    .compare td.m { color: var(--muted); font-weight: 600; }
+    .compare td.v { font-family: var(--mono); font-size: 13.5px; color: var(--text); }
+    .compare td.v.hot { color: var(--hot); }
+    .compare td.v.acc { color: var(--accent); }
+    .compare td.v.dim { color: var(--muted); }
+    .compare-note {
+      margin-top: 16px; font-family: var(--mono); font-size: 12px; color: var(--faint);
+      border-left: 2px solid var(--hot); padding: 8px 0 8px 14px; max-width: 76ch;
+    }
+
+    /* ---------- poles ---------- */
+    .poles { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .pole { background: var(--panel); padding: 26px 24px; }
+    .pole-head { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .pole-hot .dot { background: var(--hot); }
+    .pole-cold .dot { background: var(--accent); }
+    .pole-hot .pole-head { color: var(--hot); }
+    .pole-cold .pole-head { color: var(--accent); }
+    .pole h3 { font-weight: 700; font-size: 19px; margin: 14px 0 8px; }
+    .pole p { color: var(--muted); font-size: 14.5px; }
+    .mid {
+      grid-column: 1 / -1; background: var(--bg-alt); padding: 16px 24px;
+      font-size: 14.5px; color: var(--muted); border-top: 1px solid var(--border);
+    }
+    .mid strong { color: var(--hot); font-weight: 600; }
+
+    /* ---------- lists ---------- */
+    .takes { list-style: none; counter-reset: takes; max-width: 72ch; }
+    .takes li {
+      counter-increment: takes; position: relative; padding: 14px 0 14px 46px;
+      border-top: 1px solid var(--border); color: var(--muted); font-size: 15px;
+    }
+    .takes li::before {
+      content: counter(takes); position: absolute; left: 0; top: 15px;
+      width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 7px;
+      display: grid; place-items: center; font-family: var(--mono); font-size: 13px; color: var(--accent);
+      background: var(--panel);
+    }
+    .takes li b { color: var(--text); font-weight: 600; }
+    .honest { color: var(--muted); font-size: 14.5px; max-width: 72ch; }
+    .honest li { margin-bottom: 12px; padding-left: 4px; }
+    .honest b { color: var(--text); font-weight: 600; }
+
+    /* ---------- cta ---------- */
+    .cta {
+      margin-top: 30px; background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+      padding: 30px 28px; max-width: 760px;
+    }
+    .cta p { color: var(--muted); font-size: 15px; }
+    .cta p em { color: var(--text); font-style: normal; font-weight: 600; }
+    .cta a {
+      display: inline-block; margin-top: 18px; padding: 10px 20px;
+      border: 1px solid var(--accent); border-radius: 7px; color: var(--accent);
+      text-decoration: none; font-weight: 600; font-size: 14.5px;
+    }
+    .cta a:hover { background: rgba(0, 229, 255, .1); }
+
+    /* ---------- sources ---------- */
+    .sources { font-size: 13.5px; color: var(--muted); }
+    .sources ol { padding-left: 20px; }
+    .sources li { margin-bottom: 7px; }
+    .sources .m { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+
+    /* ---------- footer ---------- */
+    footer { padding: 40px 0 56px; }
+    footer p { color: var(--muted); font-size: 14px; }
+    footer .mono { font-family: var(--mono); font-size: 13px; color: var(--faint); margin-top: 4px; }
+    .claim { font-family: var(--mono); font-size: 11.5px; color: var(--faint); margin-top: 14px; max-width: 72ch; }
+
+    /* ---------- reveal ---------- */
+    .rv { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .rv.on { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 720px) {
+      .wrap { padding: 0 18px; }
+      .masthead { padding: 48px 0 30px; }
+      .poles { grid-template-columns: 1fr; }
+      .mid { grid-column: 1; }
+      .compare { display: block; overflow-x: auto; white-space: normal; }
+    }
+  </style>
+</head>
+<body id="top">
+
+<header>
+  <nav class="wrap" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">⛨</span>
+      <span>Cormorant Cyber</span>
+    </a>
+    <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-list">☰</button>
+    <ul id="nav-list">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="contact.html">Inquiries</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="masthead">
+    <div class="wrap">
+      <div class="kicker">Field study · September 2026 · Cormorant Cyber</div>
+      <h1>Same phone, <span class="hot">five days</span> apart</h1>
+      <p class="dek">What a Pixel looks like on stock Android versus GrapheneOS — same device, same user, measured with the same read-only collectors on both sides. No assumptions: every number below was pulled from the device itself.</p>
+      <div class="byline">
+        <span>device: Pixel 8 (same unit, both exams)</span>
+        <span>stock exam: 2026-09-11 · grapheneos: flash day + 5 days of real use</span>
+        <span>stock figures are post-hardening floors</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="numbers">
+    <div class="wrap">
+      <h2>The numbers</h2>
+      <p class="lede">Full device exams, three states of the same phone. The stock column is a floor, not a fresh-device picture: the user had already revoked permissions by hand before collection, so a truly untouched stock phone is worse than what you see here.</p>
+      <table class="compare rv">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="hot">Stock Android (floor)</th>
+            <th class="acc">GrapheneOS, flash day</th>
+            <th class="acc">GrapheneOS, +5 days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m">Total packages</td>
+            <td class="v">595</td>
+            <td class="v acc">241</td>
+            <td class="v acc">298</td>
+          </tr>
+          <tr>
+            <td class="m">Third-party packages</td>
+            <td class="v">~178</td>
+            <td class="v acc">17</td>
+            <td class="v acc">74 — every one user-installed</td>
+          </tr>
+          <tr>
+            <td class="m">OEM / carrier / ad bloat</td>
+            <td class="v hot">~50</td>
+            <td class="v acc">0</td>
+            <td class="v acc">0</td>
+          </tr>
+          <tr>
+            <td class="m">Packages holding CAMERA</td>
+            <td class="v hot">84</td>
+            <td class="v acc">0</td>
+            <td class="v acc">11 — camera / QR / authenticator apps the user chose</td>
+          </tr>
+          <tr>
+            <td class="m">Packages holding mic</td>
+            <td class="v hot">30</td>
+            <td class="v acc">0</td>
+            <td class="v acc">5 — voice AI, keyboard, notes; 1 needed review</td>
+          </tr>
+          <tr>
+            <td class="m">Packages with SMS ops</td>
+            <td class="v">7</td>
+            <td class="v acc">0</td>
+            <td class="v acc">3 — the SMS app and device-sync tools</td>
+          </tr>
+          <tr>
+            <td class="m">Mic access events recorded</td>
+            <td class="v hot">245</td>
+            <td class="v acc">0</td>
+            <td class="v dim">none active at exam</td>
+          </tr>
+          <tr>
+            <td class="m">Camera access events recorded</td>
+            <td class="v hot">84</td>
+            <td class="v acc">0</td>
+            <td class="v acc">3 in 26 h — two photo sessions + a 2-second QR scan, all foreground</td>
+          </tr>
+          <tr>
+            <td class="m">Background camera events</td>
+            <td class="v hot">13 in 5 weeks</td>
+            <td class="v acc">0</td>
+            <td class="v acc">0</td>
+          </tr>
+          <tr>
+            <td class="m">Remote-support agent</td>
+            <td class="v hot">present (system app)</td>
+            <td class="v acc">none exists</td>
+            <td class="v acc">none exists</td>
+          </tr>
+          <tr>
+            <td class="m">#1 mic / camera consumer</td>
+            <td class="v hot">Google Play Services</td>
+            <td class="v dim">—</td>
+            <td class="v acc">sandboxed, user-opted</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="compare-note">Read the stock column honestly: it was collected after the user had already hardened the phone by hand — revocations, standby buckets, disables. It is the best a stock phone gets without fighting the OS. And it still had 84 camera grants.</p>
+    </div>
+  </section>
+
+  <section id="acting">
+    <div class="wrap">
+      <h2>What "acting" looked like on each side</h2>
+      <p class="lede">The same user, the same habits, the same collectors. The difference is entirely in what the operating system allows by default.</p>
+      <div class="poles rv">
+        <div class="pole pole-hot">
+          <div class="pole-head"><span class="dot"></span>Stock Android — the floor</div>
+          <h3>100+ packages that could reach the mic or camera</h3>
+          <p>84 packages could open the camera, 30 the microphone, 7 SMS. The access logs showed hundreds of mic and camera events a month, most from apps with no business touching either — a VPN with 10 mic events, a calendar app with 16 camera events, a browser with 12 camera events including one in the background. A remote-support agent sat in the OS as a system app. Every one of those surfaces is "legitimate" individually, which is exactly the problem: nothing looks like spyware, and that's why nobody notices.</p>
+        </div>
+        <div class="pole pole-cold">
+          <div class="pole-head"><span class="dot"></span>GrapheneOS — after five days of real use</div>
+          <h3>The ceiling becomes the user's own decisions</h3>
+          <p>The user reinstalled their whole life — messaging, mail, wallets, AI assistants, a terminal, automation agents, a scanner, two VPNs, radio tools: 74 apps. Camera grants: 11, every one an app whose job involves a lens or a QR code. Mic: 5, every one a voice feature the user turned on — plus one scanner app holding a mic grant it didn't need, flagged and revoked (its entire usage history: one 4.8-second access). In 26 hours of observation the camera opened exactly three times. Zero background camera events. No OEM telemetry. The only remote agent on the device is one the owner installed themselves — and the OS can throttle it when idle.</p>
+        </div>
+        <div class="mid">
+          <strong>The difference isn't willpower.</strong> The stock phone got the same hardening pass and still had 84 camera grants, because on stock the OS itself and the OEM apps own the permissions. On GrapheneOS the floor is zero and the ceiling is the user's own choices.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="honest">
+    <div class="wrap">
+      <h2>Why the numbers matter — and what they don't claim</h2>
+      <ul class="honest rv" style="margin-top:20px">
+        <li>This was never a spyware hunt: the stock exam matched <b>0 of 613 stalkerware indicators</b>. The real finding is a <b>consent and transparency problem</b> — 100+ packages that can reach the mic/camera with no user-facing indication, most without a meaningful opt-out.</li>
+        <li>The GrapheneOS numbers are honest: grants grow back as the user re-grants them. What stays zero is the <b>OEM layer</b> — the 50 bloat packages, the remote-support agent, the Play-Services-grabs-the-mic-by-default behavior.</li>
+        <li>Five days is a floor, not a ceiling: behavior ledgers only fill over months. The 26-hour camera log is the observed evidence, and it's presented as exactly that.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="means">
+    <div class="wrap">
+      <h2>What this means if you carry a phone</h2>
+      <ol class="takes rv">
+        <li><b>You don't need a "spyware infection" to be watched.</b> Default-granted, OEM-level permission surfaces do the job without any malware.</li>
+        <li><b>The single highest-leverage upgrade is the OS</b>, not another privacy app. A Pixel running GrapheneOS starts from zero: no carrier apps, no remote-support backdoor, Google optional and sandboxed.</li>
+        <li><b>Your apps still ask for what they ask</b> — that part is on you. But on GrapheneOS a bad grant is your decision, not the manufacturer's.</li>
+      </ol>
+      <div class="cta rv">
+        <p><em>I configure Pixels this way</em> — reflashing, app hygiene, permission hardening, and an evidence-backed before/after exam like this one. If you use a Pixel (or want one set up right), ask for the same treatment.</p>
+        <a href="contact.html">Ask about a device exam →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sources" class="sources">
+    <div class="wrap">
+      <h2>Method note</h2>
+      <ol>
+        <li>Full device exams collected 2026-09-11 (stock) and 2026-09-11 / 2026-09-16 (GrapheneOS, same Pixel 8), using identical read-only collectors: package inventory, granted permissions, app-op ledgers, camera/mic usage events, device-admins, remote-support surface.</li>
+        <li>Stock figures were collected post-user-hardening; they are floors, as stated. <span class="m">device: same unit, both exams</span></li>
+        <li>GrapheneOS figures: flash-day baseline plus a second exam after five days of normal use. <span class="m">build: GrapheneOS, bootloader re-locked</span></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year">2026</span> Cormorant Cyber · Casey Chambers · Dubai, UAE</p>
+    <p class="mono">cormorantcyber.com · casey@cormorantcyber.com</p>
+    <p class="claim">Independent security consultancy — Dubai. Every number on this page was collected from the device with read-only tooling and is reported exactly as observed; nothing is claimed beyond what the evidence shows.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var list = document.getElementById('nav-list');
+    if (btn && list) {
+      btn.addEventListener('click', function () {
+        var open = list.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+    var els = document.querySelectorAll('.rv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+    setTimeout(function () { els.forEach(function (e) { e.classList.add('on'); }); }, 1400);
+  })();
+</script>
+</body>
+</html>

@@ -209,6 +209,15 @@ export const research = [
     status: "public",
     url: "https://github.com/savagedamage/awesome-hid-security",
   },
+  {
+    id: "4",
+    repo: "Field study · Stock Android vs GrapheneOS",
+    text: "Same Pixel 8, five days apart — a measured before/after exam of camera, mic, SMS and OEM surfaces, published with the full numbers.",
+    status: "public",
+    url: "grapheneos.html",
+    colorful: true,
+    internal: true,
+  },
 ];
 
 export const researchNote =

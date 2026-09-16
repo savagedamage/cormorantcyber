@@ -20,7 +20,8 @@ const Hero = () => {
       <div className="container relative">
         {/* glows */}
         <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[64rem] max-w-full h-[28rem] bg-color-1/10 blur-[120px] rounded-full" />
-        <div className="pointer-events-none absolute top-40 left-[8%] w-[22rem] h-[22rem] bg-[#4F9DFF]/10 blur-[100px] rounded-full" />
+        <div className="pointer-events-none absolute top-40 left-[8%] w-[22rem] h-[22rem] bg-color-2/10 blur-[100px] rounded-full" />
+        <div className="pointer-events-none absolute top-64 right-[5%] w-[18rem] h-[18rem] bg-[#3D7BFF]/10 blur-[90px] rounded-full" />
 
         <div className="relative z-1 max-w-[64rem] mx-auto text-center mb-10 md:mb-14">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 mb-8 rounded-full border border-white/10 bg-white/[0.03] font-code text-[11px] uppercase tracking-[0.18em] text-n-3">
@@ -28,7 +29,7 @@ const Hero = () => {
             Independent security consultancy · Dubai, UAE
           </div>
 
-          <h1 className="h1 mb-6">
+          <h1 className="h1 mb-6 neon-cyan">
             Security consulting for teams
             <br className="hidden md:block" /> that ship software —{" "}
             <span className="text-gradient">

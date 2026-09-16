@@ -20,13 +20,14 @@ const HeroVisual = () => (
       className="absolute inset-0"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(53,224,200,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(53,224,200,0.04) 1px, transparent 1px)",
+          "linear-gradient(rgba(0,229,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px)",
         backgroundSize: "36px 36px",
       }}
     />
 
-    {/* waterline */}
-    <div className="absolute top-[12%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-color-1/50 to-transparent" />
+    {/* waterline — cyan + magenta twin horizon */}
+    <div className="absolute top-[12%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-color-1/60 to-transparent" />
+    <div className="absolute top-[13%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-color-2/40 to-transparent" />
 
     {/* sonar */}
     <div className="absolute left-[10%] -bottom-[30%] w-[24rem] h-[24rem] md:w-[32rem] md:h-[32rem] lg:w-[36rem] lg:h-[36rem]">
@@ -35,7 +36,7 @@ const HeroVisual = () => (
           className="hero-anim-sweep absolute inset-0"
           style={{
             background:
-              "conic-gradient(from 0deg at 50% 50%, rgba(53,224,200,0.28), rgba(53,224,200,0.05) 16deg, transparent 58deg)",
+              "conic-gradient(from 0deg at 50% 50%, rgba(0,229,255,0.30), rgba(0,229,255,0.05) 18deg, transparent 46deg, rgba(255,42,109,0.22) 78deg, transparent 130deg)",
           }}
         />
       </div>
@@ -45,7 +46,7 @@ const HeroVisual = () => (
       {BLIPS.map((blip, i) => (
         <span
           key={i}
-          className="hero-anim-blip absolute w-2 h-2 rounded-full bg-color-1 shadow-[0_0_10px_2px_rgba(53,224,200,0.55)]"
+          className="hero-anim-blip absolute w-2 h-2 rounded-full bg-color-1 shadow-[0_0_10px_2px_rgba(0,229,255,0.55)]"
           style={{
             left: `${blip.x}%`,
             top: `${blip.y}%`,

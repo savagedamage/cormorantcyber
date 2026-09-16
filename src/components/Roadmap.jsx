@@ -16,15 +16,15 @@ const Roadmap = () => (
           <a
             key={item.id}
             href={item.url}
-            target="_blank"
-            rel="noreferrer noopener"
+            target={item.internal ? undefined : "_blank"}
+            rel={item.internal ? undefined : "noreferrer noopener"}
             className="group relative flex items-start gap-5 p-6 rounded-2xl border border-white/8 bg-white/[0.02] transition-all duration-300 hover:border-color-1/40 hover:bg-white/[0.04]"
           >
             <span className="mt-1.5 w-2 h-2 rounded-full bg-color-1 shadow-[0_0_8px_1px_rgba(53,224,200,0.5)]" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-3 flex-wrap">
                 <h4 className="font-code text-base text-n-1">
-                  savagedamage/{item.repo}
+                  {item.internal ? item.repo : `savagedamage/${item.repo}`}
                 </h4>
                 <span className="px-2.5 py-0.5 rounded-full border border-color-1/30 bg-color-1/10 font-code text-[10px] uppercase tracking-wider text-color-1">
                   public
